@@ -14,6 +14,8 @@ List<Product> catalog = new()
     new Product { Id=9, Name="Headphones", Category="Electronics", Price=150, Stock=40 },
     new Product { Id=10, Name="Jacket", Category="Clothing", Price=120, Stock=15 }
 };
+#region Task 01 : Smart Product Search
+// نوع ال delegate هنا Func<> ب Return value من نوع List<Product>
 //Func<Product, bool> searchvalid1 = (Elec) => Elec.Category.Equals("Electronics");
 //Func<Product, bool> searchvalid2 = (price) => price.Price < 50;
 //Func<Product, bool> searchvalid3 = (stock) => stock.Stock > 0;
@@ -42,24 +44,46 @@ List<Product> catalog = new()
 //{
 //    Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
 //}
+#endregion
+
+#region Task 03 : Custom Report Generator
+#region 3.1 Print Reports
+// نوع ال delegate هنا Action<> بدون Return value ب return value من نوع void لانها بتنفذ امر معين
 //Console.WriteLine("\n- - -Print Reports- - - ");
 //Action<Product> Printreports1 = (p) => Console.WriteLine($"{p.Name} - Price: ${p.Price}");
 //Action<Product> Printreports2 = (p) => Console.WriteLine($"[{p.Category}] {p.Name} | Price: ${p.Price} | Stock:{p.Stock}");
 //Console.WriteLine("- - -Short Report- - - ");
 //Product.PrintReports(catalog, Printreports1);
 //Console.WriteLine("\n- - -Detailed Report- - - ");
-//Product.PrintReports(catalog, Printreports2);
-Func<Product, string> Summary = (p) => $"{p.Name} (${p.Price})";
-Func<Product, string> priceVlaid = (p) => $"{p.Name}: ({( p.Price > 100 ? "Expensive!" : "Affordable" )})";
-List<string> resultSummry = Product.TransformProducts(catalog, Summary);
-Console.WriteLine("- - -list Summary- - -");
-foreach(string product in resultSummry)
-{
-    Console.WriteLine(product);
-}
-List<string> resultprice = Product.TransformProducts(catalog, priceVlaid);
-Console.WriteLine("- - -Price Lapels- - -");
-foreach(string product in resultprice)
-{
-    Console.WriteLine(product);
-}
+//Product.PrintReports(catalog, Printreports2); 
+#endregion
+
+#region 3.2. Transform Products
+// نوع ال delegate هنا Func<> ب return value من نوع List<string>
+//Func<Product, string> Summary = (p) => $"{p.Name} (${p.Price})";
+//Func<Product, string> priceVlaid = (p) => $"{p.Name}: ({( p.Price > 100 ? "Expensive!" : "Affordable" )})";
+//List<string> resultSummry = Product.TransformProducts(catalog, Summary);
+//Console.WriteLine("- - -list Summary- - -");
+//foreach(string product in resultSummry)
+//{
+//    Console.WriteLine(product);
+//}
+//List<string> resultprice = Product.TransformProducts(catalog, priceVlaid);
+//Console.WriteLine("- - -Price Lapels- - -");
+//foreach(string product in resultprice)
+//{
+//    Console.WriteLine(product);
+//} 
+#endregion
+
+#region 3.3. Filter Products
+// نوع ال delegate هنا Predicate<> ب return value من نوع List<Product>
+//Predicate<Product> onlystockVlaid = (p) => p.Stock < 20 ;
+//List<Product> resultfps = Product.FilterProducts(catalog, onlystockVlaid);
+//Console.WriteLine("- - -Price Lapels- - -");
+//foreach (Product product in resultfps)
+//{
+//    Console.WriteLine($"[LOW STOCK] {product.Name}: only {product.Stock} left!");
+//} 
+#endregion
+#endregion

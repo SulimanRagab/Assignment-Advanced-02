@@ -50,6 +50,16 @@ namespace Assignment_Advanced_02
                 }
                 return tostring;
             }
+            public static List<Product> FilterProducts(List<Product> product, Predicate<Product> filtr)
+            {
+                List<Product> fps = new List<Product>();
+                foreach (Product p in product)
+                {
+                if(filtr(p))
+                    fps.Add(p);
+                }
+                return fps;
+            }
 
     }
 
