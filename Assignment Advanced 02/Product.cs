@@ -34,6 +34,15 @@ namespace Assignment_Advanced_02
             }
 
 
+        public static void PrintReports(List<Product> product , Action<Product> action)
+        {
+            foreach (Product p in product)
+            {
+                action(p);
+            }
+        }
+
+
     }
 
 }

@@ -42,3 +42,10 @@ foreach (Product product in result4)
 {
     Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
 }
+Console.WriteLine("\n- - -Print Reports- - - ");
+Action<Product> Printreports1 = (p) => Console.WriteLine($"{p.Name} - Price: ${p.Price}");
+Action<Product> Printreports2 = (p) => Console.WriteLine($"[{p.Category}] {p.Name} | Price: ${p.Price} | Stock:{p.Stock}");
+Console.WriteLine("- - -Short Report- - - ");
+Product.PrintReports(catalog, Printreports1);
+Console.WriteLine("\n- - -Detailed Report- - - ");
+Product.PrintReports(catalog, Printreports2);
