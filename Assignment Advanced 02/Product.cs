@@ -41,7 +41,15 @@ namespace Assignment_Advanced_02
                 action(p);
             }
         }
-
+            public static List<string> TransformProducts(List<Product> product, Func<Product, string> valid)
+            {
+                List<string> tostring = new List<string>();
+                foreach (Product p in product)
+                {   
+                    tostring.Add(valid(p));
+                }
+                return tostring;
+            }
 
     }
 

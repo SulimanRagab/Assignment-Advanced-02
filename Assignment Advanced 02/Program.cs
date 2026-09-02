@@ -14,38 +14,52 @@ List<Product> catalog = new()
     new Product { Id=9, Name="Headphones", Category="Electronics", Price=150, Stock=40 },
     new Product { Id=10, Name="Jacket", Category="Clothing", Price=120, Stock=15 }
 };
-Func<Product, bool> searchvalid1 = (Elec) => Elec.Category.Equals("Electronics");
-Func<Product, bool> searchvalid2 = (price) => price.Price < 50;
-Func<Product, bool> searchvalid3 = (stock) => stock.Stock > 0;
-Func<Product, bool> searchvalid4 = (p) => p.Category == "Clothing" && p.Price < 100;
-List<Product> result1 = Product.SearchProducts(catalog, searchvalid1);
-Console.WriteLine("- - -Electronics- - -");
-foreach (Product product in result1)
+//Func<Product, bool> searchvalid1 = (Elec) => Elec.Category.Equals("Electronics");
+//Func<Product, bool> searchvalid2 = (price) => price.Price < 50;
+//Func<Product, bool> searchvalid3 = (stock) => stock.Stock > 0;
+//Func<Product, bool> searchvalid4 = (p) => p.Category == "Clothing" && p.Price < 100;
+//List<Product> result1 = Product.SearchProducts(catalog, searchvalid1);
+//Console.WriteLine("- - -Electronics- - -");
+//foreach (Product product in result1)
+//{
+//    Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
+//}
+//List<Product> result2 = Product.SearchProducts(catalog, searchvalid2);
+//Console.WriteLine("\n- - -Under $50- - -");
+//foreach (Product product in result2)
+//{
+//    Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
+//}
+//List<Product> result3 = Product.SearchProducts(catalog, searchvalid3);
+//Console.WriteLine("\n- - -In Stock- - -");
+//foreach (Product product in result3)
+//{
+//    Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
+//}
+//List<Product> result4 = Product.SearchProducts(catalog, searchvalid4);
+//Console.WriteLine("\n- - -Clothing Under 100$- - -");
+//foreach (Product product in result4)
+//{
+//    Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
+//}
+//Console.WriteLine("\n- - -Print Reports- - - ");
+//Action<Product> Printreports1 = (p) => Console.WriteLine($"{p.Name} - Price: ${p.Price}");
+//Action<Product> Printreports2 = (p) => Console.WriteLine($"[{p.Category}] {p.Name} | Price: ${p.Price} | Stock:{p.Stock}");
+//Console.WriteLine("- - -Short Report- - - ");
+//Product.PrintReports(catalog, Printreports1);
+//Console.WriteLine("\n- - -Detailed Report- - - ");
+//Product.PrintReports(catalog, Printreports2);
+Func<Product, string> Summary = (p) => $"{p.Name} (${p.Price})";
+Func<Product, string> priceVlaid = (p) => $"{p.Name}: ({( p.Price > 100 ? "Expensive!" : "Affordable" )})";
+List<string> resultSummry = Product.TransformProducts(catalog, Summary);
+Console.WriteLine("- - -list Summary- - -");
+foreach(string product in resultSummry)
 {
-    Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
+    Console.WriteLine(product);
 }
-List<Product> result2 = Product.SearchProducts(catalog, searchvalid2);
-Console.WriteLine("\n- - -Under $50- - -");
-foreach (Product product in result2)
+List<string> resultprice = Product.TransformProducts(catalog, priceVlaid);
+Console.WriteLine("- - -Price Lapels- - -");
+foreach(string product in resultprice)
 {
-    Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
+    Console.WriteLine(product);
 }
-List<Product> result3 = Product.SearchProducts(catalog, searchvalid3);
-Console.WriteLine("\n- - -In Stock- - -");
-foreach (Product product in result3)
-{
-    Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
-}
-List<Product> result4 = Product.SearchProducts(catalog, searchvalid4);
-Console.WriteLine("\n- - -Clothing Under 100$- - -");
-foreach (Product product in result4)
-{
-    Console.WriteLine($"{product.Name}-${product.Price} (Stock:{product.Stock})");
-}
-Console.WriteLine("\n- - -Print Reports- - - ");
-Action<Product> Printreports1 = (p) => Console.WriteLine($"{p.Name} - Price: ${p.Price}");
-Action<Product> Printreports2 = (p) => Console.WriteLine($"[{p.Category}] {p.Name} | Price: ${p.Price} | Stock:{p.Stock}");
-Console.WriteLine("- - -Short Report- - - ");
-Product.PrintReports(catalog, Printreports1);
-Console.WriteLine("\n- - -Detailed Report- - - ");
-Product.PrintReports(catalog, Printreports2);
